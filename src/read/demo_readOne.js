@@ -12,10 +12,10 @@ async function findOneListingByName(client, nameOfListing) {
     .findOne({ name: nameOfListing });
 
   if (result) {
-    console.log(`✅ Found a listing with the name '${nameOfListing}':`);
+    console.log(` Found a listing with the name '${nameOfListing}':`);
     console.log(result);
   } else {
-    console.log(`❌ No listings found with the name '${nameOfListing}'`);
+    console.log(` No listings found with the name '${nameOfListing}'`);
   }
 }
 
@@ -23,12 +23,12 @@ async function findOneListingByName(client, nameOfListing) {
 async function main() {
   try {
     await client.connect();
-    console.log("🔌 Connected to MongoDB");
+    console.log(" Connected to MongoDB");
 
     // Search for the listing
     await findOneListingByName(client, "Infinite Views");
   } catch (err) {
-    console.error("❗ Error occurred:", err);
+    console.error("Error occurred:", err);
   } finally {
     await client.close();
     console.log(" Connection closed");

@@ -3,24 +3,23 @@ const { MongoClient } = require("mongodb");
 const url = "mongodb://localhost:27017";
 const client = new MongoClient(url);
 
-//Upsert is a combination of update and insert.
-// If the document exists, it updates it. If it doesn't exist, it inserts a new
 async function upsertListinByName(client, nameOfListing, updatedListing) {
   const result = await client
     .db("sample_airbnb")
-    .collection("listingAndReviews")
+    .collection("listingsAndReviews")
     .updateOne(
       { name: nameOfListing },
       { $set: updatedListing },
       { upsert: true }
     );
-  console.log(`${result.matchedCount} documents matched the query criteria.`);
+
+  console.log(`${result.matchedCount} document(s) matched the query criteria.`);
   if (result.upsertedCount > 0) {
     console.log(
       `A new listing was inserted with the id: ${result.upsertedId._id}`
     );
   } else {
-    console.log(`${result.modifiedCount} documents were updated.`);
+    console.log(`${result.modifiedCount} document(s) were updated.`);
   }
 }
 
@@ -43,4 +42,5 @@ async function main() {
     console.log("Connection closed");
   }
 }
+
 main().catch(console.error);
