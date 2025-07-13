@@ -8,8 +8,8 @@ async function deleteListingsWithMinimumBedroomsAndMostRecentReviews(
   { minimumBedrooms = 0, maximumBathrooms = 2 }
 ) {
   const result = await client
-    .db("sample_airbnb") // ✅ fixed space
-    .collection("listingsAndReviews") // ✅ fixed typo
+    .db("sample_airbnb")
+    .collection("listingsAndReviews")
     .deleteMany({
       bedrooms: { $gte: minimumBedrooms },
       bathrooms: { $lte: maximumBathrooms },
