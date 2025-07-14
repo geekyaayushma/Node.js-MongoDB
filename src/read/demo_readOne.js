@@ -9,7 +9,7 @@ async function findOneListingByName(client, nameOfListing) {
   const result = await client
     .db("sample_airbnb")
     .collection("listingsAndReviews")
-    .findOne({ name: nameOfListing });
+    .findOne({ property_type: nameOfListing });
 
   if (result) {
     console.log(` Found a listing with the name '${nameOfListing}':`);
@@ -26,7 +26,7 @@ async function main() {
     console.log(" Connected to MongoDB");
 
     // Search for the listing
-    await findOneListingByName(client, "Infinite Views");
+    await findOneListingByName(client, "Apartment");
   } catch (err) {
     console.error("Error occurred:", err);
   } finally {
